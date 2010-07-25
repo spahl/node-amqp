@@ -1067,9 +1067,12 @@ Connection.prototype.queue = function (name /* , options, openCallback */) {
 // - durable (boolean)
 // - autoDelete (boolean, default true)
 Connection.prototype.exchange = function (name, options) {
-  if (!name) name = 'amq.topic';
+    if (!options) options = {};
+    if (!name) {
+        name = 'amq.topic';
+        options.durable = true;
+    }
 
-  if (!options) options = {};
   if (options.type === undefined) options.type = 'topic';
 
   if (this.exchanges[name]) return this.exchanges[name];
