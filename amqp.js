@@ -1289,7 +1289,6 @@ Queue.prototype.subscribe = function (/* options, messageListener */) {
 
 
       self.emit('message', json);
-      if (!options.ack) m.acknowledge();
     });
   });
 };
